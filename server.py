@@ -29,6 +29,7 @@ def get_video_info(url: str) -> dict:
                 "yt-dlp",
                 "--dump-json",
                 "--no-download",
+                "--extractor-args", "youtube:player_client=android,ios",
                 url,
             ],
             capture_output=True,
@@ -70,6 +71,8 @@ def download_audio(url: str) -> tuple[str, dict]:
             "--no-playlist",               # Don't download playlists
             "--embed-thumbnail",           # Embed thumbnail in file
             "--add-metadata",              # Add metadata
+            "--extractor-args", "youtube:player_client=android,ios",
+            "--force-ipv4",                # Often helps with bot detection
             url,
         ],
         capture_output=True,
