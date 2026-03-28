@@ -151,6 +151,16 @@ def download_endpoint():
         return jsonify({"error": str(e)}), 500
 
 
+@app.route("/", methods=["GET"])
+def index():
+    """Home route for verification."""
+    return jsonify({
+        "status": "online",
+        "message": "YouTube Audio Backend is Live!",
+        "version": "1.1.0"
+    })
+
+
 @app.route("/health", methods=["GET"])
 def health():
     """Health check endpoint."""
