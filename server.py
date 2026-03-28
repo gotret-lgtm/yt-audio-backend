@@ -23,6 +23,7 @@ os.makedirs(DOWNLOAD_DIR, exist_ok=True)
 def get_video_info(url: str) -> dict:
     """Extract video metadata without downloading."""
     try:
+        print(f"🔍 Extracting info for: {url}")
         result = subprocess.run(
             [
                 "yt-dlp",
@@ -35,6 +36,7 @@ def get_video_info(url: str) -> dict:
             timeout=30,
         )
         if result.returncode != 0:
+            print(f"❌ yt-dlp error: {result.stderr}")
             raise Exception(result.stderr)
 
         info = json.loads(result.stdout)
